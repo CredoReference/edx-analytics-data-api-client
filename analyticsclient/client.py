@@ -5,6 +5,7 @@ import requests.exceptions
 from analyticsclient.constants import data_format as DF
 
 from analyticsclient.course import Course
+from analyticsclient.org import Org
 from analyticsclient.exceptions import ClientError, InvalidRequestError, NotFoundError, TimeoutError
 from analyticsclient.module import Module
 from analyticsclient.status import Status
@@ -41,6 +42,7 @@ class Client(object):
 
         self.status = Status(self)
         self.courses = lambda course_id: Course(self, course_id)
+        self.orgs = lambda org_id: Org(self, org_id)
         self.modules = lambda course_id, module_id: Module(self, course_id, module_id)
 
     def get(self, resource, timeout=None, data_format=DF.JSON):
